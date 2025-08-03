@@ -13,7 +13,7 @@ A modern, interactive web application powered by machine learning that provides 
 
 ## 🚀 Live Demo
 
-Visit the application: [AI Health Assistant](https://your-deployment-url.com)
+*Coming soon - Deployment in progress*
 
 ## 📋 Prerequisites
 
