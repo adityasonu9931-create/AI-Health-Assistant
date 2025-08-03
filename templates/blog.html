@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Blog - AI Health Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 2rem auto;
+            padding: 3rem;
+            max-width: 1000px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .blog-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: none;
+        }
+
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search-box:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            outline: none;
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 15px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .newsletter-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .newsletter-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem 0;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 1rem;
+                padding: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-heartbeat me-2"></i>AI Health Assistant
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"><i class="fas fa-info-circle me-1"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/developer"><i class="fas fa-code me-1"></i>Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/blog"><i class="fas fa-blog me-1"></i>Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-container">
+            <!-- Hero Section -->
+            <div class="text-center mb-5">
+                <h1 class="hero-title">
+                    <i class="fas fa-blog me-3"></i>
+                    Health & Wellness Blog
+                </h1>
+                <p class="lead text-muted">
+                    Stay informed with the latest health tips, medical insights, and wellness advice
+                </p>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="text-center mb-4">
+                <input type="text" class="search-box" id="searchBox" placeholder="Search articles...">
+            </div>
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">All Articles</button>
+                <button class="filter-btn" data-category="wellness">Wellness</button>
+                <button class="filter-btn" data-category="nutrition">Nutrition</button>
+                <button class="filter-btn" data-category="fitness">Fitness</button>
+                <button class="filter-btn" data-category="mental-health">Mental Health</button>
+                <button class="filter-btn" data-category="prevention">Prevention</button>
+            </div>
+
+            <!-- Blog Posts -->
+            <div class="blog-grid" id="blogGrid">
+                <!-- Wellness Articles -->
+                <div class="blog-post" data-category="wellness">
+                    <div class="blog-image">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h5>10 Essential Tips for Better Heart Health</h5>
+                    <p class="text-muted">Learn simple yet effective ways to maintain a healthy heart and reduce cardiovascular risks.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar me-1"></i>Dec 15, 2024</span>
+                        <span class="blog-tag">Wellness</span>
+                    </div>
+                </div>
+
+                <div class="blog-post" data-category="nutrition">
+                    <div class="blog-image">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h5>Superfoods That Boost Your Immune System</h5>
+                    <p class="text-muted">Discover the power of natural foods that can strengthen your body's defense mechanisms.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar me-1"></i>Dec 12, 2024</span>
+                        <span class="blog-tag">Nutrition</span>
+                    </div>
+                </div>
+
+                <div class="blog-post" data-category="fitness">
+                    <div class="blog-image">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h5>Home Workout Routines for Busy Professionals</h5>
+                    <p class="text-muted">Effective exercise routines you can do at home with minimal equipment and maximum results.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar me-1"></i>Dec 10, 2024</span>
+                        <span class="blog-tag">Fitness</span>
+                    </div>
+                </div>
+
+                <div class="blog-post" data-category="mental-health">
+                    <div class="blog-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h5>Managing Stress in the Digital Age</h5>
+                    <p class="text-muted">Practical strategies to maintain mental well-being in our fast-paced, technology-driven world.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar me-1"></i>Dec 8, 2024</span>
+                        <span class="blog-tag">Mental Health</span>
+                    </div>
+                </div>
+
+                <div class="blog-post" data-category="prevention">
+                    <div class="blog-image">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h5>Preventive Healthcare: Your Guide to Early Detection</h5>
+                    <p class="text-muted">Understanding the importance of regular check-ups and early disease detection.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar me-1"></i>Dec 5, 2024</span>
+                        <span class="blog-tag">Prevention</span>
+                    </div>
+                </div>
+
+                <div class="blog-post" data-category="wellness">
+                    <div class="blog-image">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h5>The Science of Better Sleep</h5>
+                    <p class="text-muted">How quality sleep affects your health and practical tips for improving your sleep hygiene.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar me-1"></i>Dec 3, 2024</span>
+                        <span class="blog-tag">Wellness</span>
+                    </div>
+                </div>
+
+                <div class="blog-post" data-category="nutrition">
+                    <div class="blog-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h5>Plant-Based Nutrition: Myths and Facts</h5>
+                    <p class="text-muted">Separating fact from fiction about plant-based diets and their health benefits.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar me-1"></i>Dec 1, 2024</span>
+                        <span class="blog-tag">Nutrition</span>
+                    </div>
+                </div>
+
+                <div class="blog-post" data-category="fitness">
+                    <div class="blog-image">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h5>Cardio vs Strength Training: Finding Your Balance</h5>
+                    <p class="text-muted">Understanding the benefits of different exercise types and how to combine them effectively.</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar me-1"></i>Nov 28, 2024</span>
+                        <span class="blog-tag">Fitness</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="newsletter-card">
+                <h4><i class="fas fa-envelope me-2"></i>Stay Updated</h4>
+                <p>Subscribe to our newsletter for the latest health tips and wellness advice delivered to your inbox.</p>
+                <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email address">
+                    <button class="btn btn-light" onclick="subscribeNewsletter()">
+                        <i class="fas fa-paper-plane me-2"></i>Subscribe
+                    </button>
+                </div>
+            </div>
+
+            <!-- Featured Article -->
+            <div class="blog-card">
+                <div class="text-center mb-4">
+                    <div class="blog-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Featured Article</h3>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="blog-image">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>AI in Healthcare: Revolutionizing Medical Diagnosis</h4>
+                        <p class="lead">Discover how artificial intelligence is transforming the way we approach healthcare and medical diagnosis.</p>
+                        <p>Our latest article explores the cutting-edge developments in AI-powered healthcare, from early disease detection to personalized treatment plans. Learn how machine learning algorithms are helping doctors make more accurate diagnoses and improve patient outcomes.</p>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-book-open me-2"></i>Read Full Article
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-5">
+                <a href="/" class="btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const blogPosts = document.querySelectorAll('.blog-post');
+        const searchBox = document.getElementById('searchBox');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const category = button.getAttribute('data-category');
+                filterPosts(category);
+            });
+        });
+
+        function filterPosts(category) {
+            blogPosts.forEach(post => {
+                if (category === 'all' || post.getAttribute('data-category') === category) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
+
+        // Search functionality
+        searchBox.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            blogPosts.forEach(post => {
+                const title = post.querySelector('h5').textContent.toLowerCase();
+                const content = post.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const email = document.querySelector('.newsletter-input').value;
+            if (email) {
+                alert('Thank you for subscribing to our newsletter!');
+                document.querySelector('.newsletter-input').value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        }
+
+        // Add click functionality to blog posts
+        blogPosts.forEach(post => {
+            post.addEventListener('click', () => {
+                const title = post.querySelector('h5').textContent;
+                alert(`Opening article: ${title}\n\nThis would navigate to the full article in a real application.`);
+            });
+        });
+
+        // Add animation to filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

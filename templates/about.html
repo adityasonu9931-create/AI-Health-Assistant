@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Us - AI Health Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 2rem auto;
+            padding: 3rem;
+            max-width: 900px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .about-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 15px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 1rem;
+                padding: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-heartbeat me-2"></i>AI Health Assistant
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/about"><i class="fas fa-info-circle me-1"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/developer"><i class="fas fa-code me-1"></i>Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog"><i class="fas fa-blog me-1"></i>Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-container">
+            <!-- Hero Section -->
+            <div class="text-center mb-5">
+                <h1 class="hero-title">
+                    <i class="fas fa-users me-3"></i>
+                    About Our Team
+                </h1>
+                <p class="lead text-muted">
+                    Meet the passionate AIML engineering students behind this innovative healthcare platform
+                </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Team Members</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Hours of Development</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Diseases Covered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Accuracy Rate</div>
+                </div>
+            </div>
+
+            <!-- About Cards -->
+            <div class="about-card">
+                <div class="text-center mb-4">
+                    <div class="about-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Who We Are</h3>
+                </div>
+                <p class="lead">
+                    We are a team of passionate AIML engineering students from BMS College of Engineering, Bengaluru, 
+                    driven to harness the power of technology to make a positive impact on healthcare accessibility and awareness.
+                </p>
+                <p>
+                    As students specializing in Artificial Intelligence and Machine Learning, we bring a unique blend of 
+                    technical expertise and a desire to solve real-world challenges. Our goal is to create impactful 
+                    solutions that improve health literacy and accessibility.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <div class="text-center mb-4">
+                    <div class="about-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                </div>
+                <p class="lead">
+                    Our vision is to bridge the gap between healthcare and technology, making medical information 
+                    and resources accessible to everyone, empowering individuals to make informed health decisions.
+                </p>
+                <p>
+                    We believe that everyone deserves access to reliable health information and guidance, 
+                    regardless of their location or background. Through our AI-powered platform, we aim to 
+                    democratize healthcare knowledge and support.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <div class="text-center mb-4">
+                    <div class="about-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                </div>
+                <p class="lead">
+                    Our mission is to develop a platform powered by AI and ML models capable of assisting 
+                    users in identifying potential health concerns based on reported symptoms.
+                </p>
+                <p>
+                    We aim to simplify health education by offering reliable resources for better understanding 
+                    and decision-making. Our platform leverages machine learning models trained on comprehensive 
+                    health datasets to provide accurate predictions based on user input.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <div class="text-center mb-4">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Your Well-being, Our Priority</h3>
+                </div>
+                <p class="lead">
+                    We prioritize the well-being of every individual using our platform.
+                </p>
+                <p>
+                    Understanding healthcare can be complex, so we strive to offer not only predictions but also 
+                    informative content, including precautions, medications, dietary suggestions, and wellness tips. 
+                    We invite you to explore our platform, engage with our educational resources, and join us in 
+                    transforming how healthcare information is accessed and understood.
+                </p>
+            </div>
+
+            <!-- Team Section -->
+            <div class="text-center mb-4">
+                <h2 class="hero-title">
+                    <i class="fas fa-users me-3"></i>
+                    Meet Our Team
+                </h2>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h5>Lead Developer</h5>
+                    <p class="text-muted">AIML Engineering Student</p>
+                    <p>Specializes in machine learning algorithms and AI model development</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h5>Data Scientist</h5>
+                    <p class="text-muted">AIML Engineering Student</p>
+                    <p>Expert in data preprocessing and model training</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h5>Frontend Developer</h5>
+                    <p class="text-muted">AIML Engineering Student</p>
+                    <p>Creates intuitive and responsive user interfaces</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h5>Backend Developer</h5>
+                    <p class="text-muted">AIML Engineering Student</p>
+                    <p>Handles server-side logic and API development</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h5>UI/UX Designer</h5>
+                    <p class="text-muted">AIML Engineering Student</p>
+                    <p>Designs user-friendly and accessible interfaces</p>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-5">
+                <p class="lead mb-4">
+                    Thank you for trusting our platform developed by the AIML engineering students of BMSCE, Bengaluru. 
+                    Together, let's make a healthier future possible.
+                </p>
+                <a href="/" class="btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
